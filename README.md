@@ -1,15 +1,16 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:203A43,100:2C5364&height=200&section=header&text=Kovvuri%20Nandi%20Vardhan%20Reddy&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=AI%20%26%20Full-Stack%20Developer%20%7C%20Python%2C%20FastAPI%2C%20React&descAlignY=58&descSize=18" width="100%"/>
+<img src="https://github.com/NandiVardhan2007.png" width="150" height="150" style="border-radius:50%;" alt="Nandi Vardhan Reddy"/>
 
-<!-- Typing animation header -->
+### Kovvuri Nandi Vardhan Reddy
+**AI & Full-Stack Developer | Python, FastAPI, React | Open to Internships**
+
+<!-- Typing animation subheader -->
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C2FF&center=true&vCenter=true&width=600&lines=Software+Developer+%7C+CSE+Student;Flutter+%2B+FastAPI+%2B+AWS;Building+practical%2C+polished+products" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=00C2FF&center=true&vCenter=true&width=600&lines=Software+Developer+%7C+CSE+Student;Flutter+%2B+FastAPI+%2B+AWS;Building+practical%2C+polished+products" alt="Typing SVG" />
 </a>
 
 </div>
-
----
 
 ---
 

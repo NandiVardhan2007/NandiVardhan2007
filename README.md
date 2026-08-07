@@ -15,7 +15,8 @@
 - 🛠️ I build across the full stack — **Flutter** mobile/desktop apps, **FastAPI** backends, and **AWS/DevOps** infrastructure
 - 🧠 Deep into DSA — active on LeetCode with a growing solve streak
 - 🎯 I like building polished, practical products rather than throwaway toy projects
-- 📫 Reach me at: **your-email@example.com**
+- 📫 Reach me at: **kovvurinandivardhanreddy7@gmail.com**
+- 📱 **+91 7337419275**
 
 ---
 
@@ -100,7 +101,7 @@
 ### 🧩 LeetCode
 
 <div align="center">
-<img src="https://leetcard.jacoblin.cool/Nandu_2007?theme=dark&font=baloo2&ext=heatmap" />
+<img src="https://leetcard.jacoblin.cool/Nandu_2007_?theme=dark&font=baloo2&ext=heatmap" />
 </div>
 
 ---

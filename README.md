@@ -117,7 +117,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/NandiVardhan2007/NandiVardhan2007/output/metrics.svg" width="100%"/>
+<img src="https://raw.githubusercontent.com/NandiVardhan2007/NandiVardhan2007/main/dist/metrics.svg" width="100%"/>
 
 <img src="https://streak-stats.demolab.com/?user=NandiVardhan2007&theme=tokyonight&hide_border=true&cache_seconds=86400" alt="GitHub Streak Stats"/>
 

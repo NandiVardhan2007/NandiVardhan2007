@@ -1,38 +1,15 @@
 <div align="center">
 
-```
-███╗   ██╗ █████╗ ███╗   ██╗██████╗ ██╗   ██╗
-████╗  ██║██╔══██╗████╗  ██║██╔══██╗██║   ██║
-██╔██╗ ██║███████║██╔██╗ ██║██║  ██║██║   ██║
-██║╚██╗██║██╔══██║██║╚██╗██║██║  ██║██║   ██║
-██║ ╚████║██║  ██║██║ ╚████║██████╔╝╚██████╔╝
-╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝
-```
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:203A43,100:2C5364&height=200&section=header&text=Kovvuri%20Nandi%20Vardhan%20Reddy&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=AI%20%26%20Full-Stack%20Developer%20%7C%20Python%2C%20FastAPI%2C%20React&descAlignY=58&descSize=18" width="100%"/>
 
 <!-- Typing animation header -->
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&pause=1000&color=00C2FF&center=true&vCenter=true&width=600&lines=Hi%2C+I'm+Nandu+%F0%9F%91%8B;Software+Developer+%7C+CSE+Student;Flutter+%2B+FastAPI+%2B+AWS;Building+practical%2C+polished+products" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00C2FF&center=true&vCenter=true&width=600&lines=Software+Developer+%7C+CSE+Student;Flutter+%2B+FastAPI+%2B+AWS;Building+practical%2C+polished+products" alt="Typing SVG" />
 </a>
 
 </div>
 
 ---
-
-### 💻 whoami
-
-```bash
-$ whoami
-> Kovvuri Nandi Vardhan Reddy
-
-$ cat role.txt
-> AI & Full-Stack Developer | Open to Internships
-
-$ ls skills/
-> Flutter/  FastAPI/  AWS/  MongoDB/  NVIDIA-NIM/  DSA/
-
-$ echo $STATUS
-> Currently shipping VISION — a fully local voice AI agent 🎙️
-```
 
 ---
 
@@ -51,7 +28,45 @@ $ echo $STATUS
 
 <div align="center">
 
-[![My Skills](https://skillicons.dev/icons?i=flutter,dart,fastapi,python,mongodb,aws,docker,git,github,figma)](https://skillicons.dev)
+**Languages**
+[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](#)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](#)
+[![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black)](#)
+[![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#)
+
+**Web**
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](#)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](#)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](#)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](#)
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](#)
+
+**Databases**
+[![Oracle/MySQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](#)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](#)
+[![JDBC](https://img.shields.io/badge/JDBC-007396?style=for-the-badge&logo=java&logoColor=white)](#)
+
+**AI & APIs**
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](#)
+[![NVIDIA NIM](https://img.shields.io/badge/NVIDIA_NIM-76B900?style=for-the-badge&logo=nvidia&logoColor=white)](#)
+[![Groq](https://img.shields.io/badge/Groq-F55036?style=for-the-badge&logo=groq&logoColor=white)](#)
+[![LiveKit](https://img.shields.io/badge/LiveKit-FF3B30?style=for-the-badge&logo=webrtc&logoColor=white)](#)
+[![MCP](https://img.shields.io/badge/MCP-6E56CF?style=for-the-badge&logo=anthropic&logoColor=white)](#)
+[![REST APIs](https://img.shields.io/badge/REST_APIs-25D366?style=for-the-badge&logo=fastapi&logoColor=white)](#)
+
+**DevOps**
+[![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)](#)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](#)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](#)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](#)
+[![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)](#)
+
+**Concepts**
+`OOP` `DSA` `RDBMS` `SDLC` `Agile` `Agents`
 
 </div>
 
@@ -143,8 +158,31 @@ $ echo $STATUS
 
 ---
 
+### 💬 Random Dev Wisdom
+
+<div align="center">
+<img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random Dev Quote"/>
+</div>
+
+---
+
+### 🌐 Connect
+
+<div align="center">
+
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kovvurinandivardhanreddy7@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/nandivardhanreddy007)
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://nandu-portfolio.onrender.com)
+[![LeetCode](https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/u/Nandu_2007_)
+
+</div>
+
+---
+
 <div align="center">
 
 ![Profile Views](https://komarev.com/ghpvc/?username=NandiVardhan2007&color=00C2FF&style=flat)
+
+<sub>⭐ Thanks for stopping by — feel free to explore my pinned repos above!</sub>
 
 </div>

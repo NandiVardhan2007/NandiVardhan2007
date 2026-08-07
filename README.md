@@ -138,7 +138,7 @@
 ### 🏆 Trophies
 
 <div align="center">
-<img src="https://github-profile-trophy.vercel.app/?username=NandiVardhan2007&theme=tokyonight&no-frame=true&row=1&column=7" />
+<img src="https://raw.githubusercontent.com/NandiVardhan2007/NandiVardhan2007/main/dist/trophy.svg" />
 </div>
 
 ---

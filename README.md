@@ -35,30 +35,30 @@
 <table>
   <tr>
     <td width="50%">
-      <h4>🎯 SmartApply</h4>
-      AI-powered job application platform — FastAPI + MongoDB + NVIDIA NIM + LiveKit for real-time voice-driven interview prep.
+      <h4>🤖 VISION — Voice AI Desktop Agent</h4>
+      Fully local Windows voice assistant with 40+ tools (email, web scraping, code generation, system control, ADB automation) and sub-500ms dispatch latency; includes a self-repairing autonomous coder loop.
       <br><br>
-      <code>FastAPI</code> <code>MongoDB</code> <code>NVIDIA NIM</code> <code>LiveKit</code>
+      <code>Python</code> <code>FastAPI</code> <code>Go</code> <code>LiveKit</code> <code>Groq</code> <code>NVIDIA NIM</code>
     </td>
     <td width="50%">
-      <h4>📚 DSA Tutor</h4>
-      Flutter Android app for AI-guided DSA practice — FastAPI + MongoDB + NVIDIA NIM + Judge0, deployed on ECS Fargate.
+      <h4>🎯 SmartApply — AI Job Application Platform</h4>
+      Scores resumes against job descriptions, drafts tailored cover letters, and flags skill gaps — live WebSocket dashboard, OTP auth, AI mock interviews, automated digest emails.
       <br><br>
-      <code>Flutter</code> <code>ECS Fargate</code> <code>Judge0</code>
+      <code>React</code> <code>FastAPI</code> <code>MongoDB</code> <code>Redis</code> <code>Llama 3.1 70B</code>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h4>🤖 VISION</h4>
-      Fully local voice AI desktop agent for Windows with 40+ tools — Python, FastAPI, Go, LiveKit, Groq, NVIDIA NIM.
+      <h4>🌐 Personal Portfolio</h4>
+      Responsive portfolio with an NVIDIA NIM-powered AI chatbot, live LeetCode & GitHub stats via REST API, and Cloudflare R2 CDN; SEO-optimised with structured data.
       <br><br>
-      <code>Python</code> <code>Go</code> <code>Groq</code>
+      <code>Next.js 14</code> <code>TypeScript</code> <code>Tailwind CSS</code> <code>Flask</code>
     </td>
     <td width="50%">
-      <h4>💰 Expensia</h4>
-      Personal finance Flutter app — 100% local, SQLite-backed expense and friend-debt tracking, no cloud dependency.
+      <h4>🏦 ATM Banking System</h4>
+      6-feature GUI ATM (signup, PIN auth, deposits, withdrawals, P2P transfers, mini-statement) built with MVC/DAO patterns and JDBC transaction management for ACID-compliant data integrity.
       <br><br>
-      <code>Flutter</code> <code>SQLite</code>
+      <code>Java</code> <code>Swing</code> <code>MySQL</code> <code>JDBC</code>
     </td>
   </tr>
 </table>

@@ -1,11 +1,38 @@
 <div align="center">
 
+```
+███╗   ██╗ █████╗ ███╗   ██╗██████╗ ██╗   ██╗
+████╗  ██║██╔══██╗████╗  ██║██╔══██╗██║   ██║
+██╔██╗ ██║███████║██╔██╗ ██║██║  ██║██║   ██║
+██║╚██╗██║██╔══██║██║╚██╗██║██║  ██║██║   ██║
+██║ ╚████║██║  ██║██║ ╚████║██████╔╝╚██████╔╝
+╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝
+```
+
 <!-- Typing animation header -->
 <a href="https://git.io/typing-svg">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&pause=1000&color=00C2FF&center=true&vCenter=true&width=600&lines=Hi%2C+I'm+Nandu+%F0%9F%91%8B;Software+Developer+%7C+CSE+Student;Flutter+%2B+FastAPI+%2B+AWS;Building+practical%2C+polished+products" alt="Typing SVG" />
 </a>
 
 </div>
+
+---
+
+### 💻 whoami
+
+```bash
+$ whoami
+> Kovvuri Nandi Vardhan Reddy
+
+$ cat role.txt
+> AI & Full-Stack Developer | Open to Internships
+
+$ ls skills/
+> Flutter/  FastAPI/  AWS/  MongoDB/  NVIDIA-NIM/  DSA/
+
+$ echo $STATUS
+> Currently shipping VISION — a fully local voice AI agent 🎙️
+```
 
 ---
 
@@ -73,10 +100,10 @@
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=NandiVardhan2007&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=NandiVardhan2007&layout=compact&theme=tokyonight&hide_border=true" />
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=NandiVardhan2007&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&cache_seconds=86400" />
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=NandiVardhan2007&layout=compact&theme=tokyonight&hide_border=true&cache_seconds=86400" />
 
-<img src="https://streak-stats.demolab.com/?user=NandiVardhan2007&theme=tokyonight&hide_border=true" />
+<img src="https://streak-stats.demolab.com/?user=NandiVardhan2007&theme=tokyonight&hide_border=true&cache_seconds=86400" />
 
 </div>
 

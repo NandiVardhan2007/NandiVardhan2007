@@ -39,7 +39,7 @@ I am a software engineer focused on building robust backends, intelligent AI pip
 | :--- | :--- |
 | **Frontend** | <img src="https://skillicons.dev/icons?i=html,css,js,react,ts" height="40" align="center" alt="Frontend" /> |
 | **Backend & Databases** | <img src="https://skillicons.dev/icons?i=py,mongodb,redis" height="40" align="center" alt="Backend" /> |
-| **Tools & IDEs** | <img src="https://skillicons.dev/icons?i=vscode,androidstudio,idea" height="40" align="center" alt="Tools" /> <img src="assets/skillicon-antigravity.svg" height="40" align="center" alt="Antigravity IDE" /> |
+| **Tools & IDEs** | <img src="https://skillicons.dev/icons?i=vscode,androidstudio,idea" height="40" align="center" alt="Tools" /> |
 
 </div>
 

@@ -1,0 +1,17 @@
+{
+  "_comment": "Featured repos, in README order. Star/fork/language come live from the API on every run; the description here overrides the repo's GitHub description.",
+  "projects": [
+    {
+      "repo": "Smart-Apply",
+      "description": "AI-powered job application platform with resume tailoring, application tracking, and voice-based interview prep."
+    },
+    {
+      "repo": "VISION",
+      "description": "Fully local voice AI desktop agent for Windows with 40+ tools, built on FastAPI, Go, LiveKit and NVIDIA NIM."
+    },
+    {
+      "repo": "Personal-Portfolio",
+      "description": "Personal portfolio site with an NVIDIA NIM chatbot, live GitHub/LeetCode stats and a Flask backend."
+    }
+  ]
+}

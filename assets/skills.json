@@ -1,0 +1,13 @@
+{
+  "title": "Skill Radar",
+  "_comment": "Self-rated, 0-100. Edit freely.",
+  "axes": [
+    { "label": "Flutter",     "value": 85 },
+    { "label": "FastAPI",     "value": 82 },
+    { "label": "Python",      "value": 80 },
+    { "label": "MongoDB",     "value": 75 },
+    { "label": "AWS/DevOps",  "value": 70 },
+    { "label": "AI/LLM",      "value": 78 },
+    { "label": "DSA",         "value": 74 }
+  ]
+}

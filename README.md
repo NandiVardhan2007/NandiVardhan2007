@@ -49,6 +49,14 @@ I am a software engineer focused on building robust backends, intelligent AI pip
 
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="profile-3d-contrib/profile-night-rainbow.svg">
+  <source media="(prefers-color-scheme: light)" srcset="profile-3d-contrib/profile-gitblock.svg">
+  <img src="profile-3d-contrib/profile-night-rainbow.svg" width="90%" alt="Lego 3D contribution calendar">
+</picture>
+
+<br><br>
+
 <table>
 <tr>
 <td width="33%" align="center" valign="top">

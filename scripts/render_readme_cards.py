@@ -170,9 +170,9 @@ def icon_star(x, y, size, fill):
 
 def icon_ne(x, y, size, stroke, cls="nu"):
     return (
-        f'<g class="{cls}" transform="translate({x:.1f},{y:.1f})">'
+        f'<g transform="translate({x:.1f},{y:.1f})"><g class="{cls}">'
         f'<path d="M1 {size - 1:.1f}L{size - 1:.1f} 1M{size * 0.35:.1f} 1h{size * 0.65 - 1:.1f}v{size * 0.65 - 1:.1f}" '
-        f'fill="none" stroke="{stroke}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>'
+        f'fill="none" stroke="{stroke}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g></g>'
     )
 
 

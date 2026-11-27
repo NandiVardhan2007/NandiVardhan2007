@@ -1,117 +1,16 @@
+<!-- Every card is an animated SVG drawn by scripts/render_readme_cards.py and refreshed daily
+     by .github/workflows/update-profile-art.yml. Design: "Three Worlds" (paper, ink, blue/red/yellow).
+     Spacing is baked into the SVGs, so keep this block free of blank lines and keep cards in
+     a row on one line with no spaces between them. -->
 <div align="center">
-
-<!-- NAME / TAGLINE - animated typing -->
-<a href="https://github.com/NandiVardhan2007">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2600&pause=900&color=39D353&center=true&vCenter=true&width=800&lines=Nandu;AI+Architect+%26+Full-Stack+Engineer;Building+Intelligent+Scalable+Systems;01100011+01101111+01100100+01100101" alt="typing banner">
-</a>
-
-<br>
-
-<!-- SOCIALS (Sleek Dark Theme) -->
-<a href="https://www.linkedin.com/in/nandivardhanreddy007/"><img src="https://img.shields.io/badge/LinkedIn-1A1A1A?style=for-the-badge&logo=linkedin&logoColor=%2339D353" alt="LinkedIn"></a>
-<a href="mailto:nandivardhan.dev@gmail.com"><img src="https://img.shields.io/badge/Email-1A1A1A?style=for-the-badge&logo=gmail&logoColor=%2339D353" alt="Email"></a>
-<a href="https://nandu-portfolio.onrender.com"><img src="https://img.shields.io/badge/Portfolio-1A1A1A?style=for-the-badge&logo=render&logoColor=%2339D353" alt="Portfolio"></a>
-<a href="https://leetcode.com/u/Nandu_2007"><img src="https://img.shields.io/badge/LeetCode-1A1A1A?style=for-the-badge&logo=leetcode&logoColor=%2339D353" alt="LeetCode"></a>
-
-<br><br>
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/grass.png" width="80%">
-
+<a href="https://github.com/NandiVardhan2007"><img src="./cards/hero.svg" width="100%" alt="Nandi Vardhan. AI Architect & Full-Stack Engineer. I build intelligent AI pipelines, robust backends, and cross-platform apps. Shipping HARMONIX." /></a><br>
+<img src="./cards/heatmap.svg" width="100%" alt="Nandi Vardhan's contribution graph, in blue, refreshed daily" /><br>
+<img src="./cards/activity.svg" width="100%" alt="Contributions in the last 12 months, by month, with streak and busiest day" /><br>
+<a href="https://github.com/NandiVardhan2007?tab=repositories"><img src="./cards/build.svg" width="33.333%" alt="BUILD: AI & Full-Stack systems" /></a><a href="https://leetcode.com/u/Nandu_2007"><img src="./cards/compete.svg" width="33.333%" alt="COMPETE: Oracle SQL #14 of 1,517 & Project Space Hackathon #2" /></a><a href="https://github.com/NandiVardhan2007/Harmonix-Releases"><img src="./cards/craft.svg" width="33.333%" alt="CRAFT: HARMONIX & B.Tech CSE (IT)" /></a><br>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./cards/title-coding-dark.svg" /><img src="./cards/title-coding-light.svg" width="100%" alt="What I'm building" /></picture><br>
+<a href="https://github.com/NandiVardhan2007/Smart-Apply"><img src="./cards/repo-Smart-Apply.svg" width="33.333%" alt="Smart-Apply" /></a><a href="https://github.com/NandiVardhan2007/VISION"><img src="./cards/repo-VISION.svg" width="33.333%" alt="VISION" /></a><a href="https://github.com/NandiVardhan2007/GLOOM"><img src="./cards/repo-GLOOM.svg" width="33.333%" alt="GLOOM" /></a>
 </div>
 
-<img src="assets/divider.svg" width="100%" alt="divider" />
-
-## ⚡ Executive Summary
-
-I am a software engineer focused on building robust backends, intelligent AI pipelines, and high-performance cross-platform applications. I prioritize architectural elegance and shipping production-ready systems.
-
-- 🚀 **Current Mission:** Building **HARMONIX** (Music App).
-- 🧠 **Core Expertise:** Python · React · TypeScript · MongoDB · Redis
-- 🎓 **Background:** B.Tech CSE (Information Technology) at Aditya College of Engineering and Technology
-- 🏆 **Milestones:** Ranked 14th of 1,517 in an Oracle-partnered SQL competition, and 2nd in the Project Space Hackathon.
-
-<img src="assets/divider.svg" width="100%" alt="divider" />
-
-## 🧠 Tech Arsenal
-
-<div align="center">
-
-| Focus Area | Technologies |
-| :--- | :--- |
-| **Frontend** | <img src="https://skillicons.dev/icons?i=html,css,js,react,ts" height="40" align="center" alt="Frontend" /> |
-| **Backend & Databases** | <img src="https://skillicons.dev/icons?i=py,mongodb,redis" height="40" align="center" alt="Backend" /> |
-| **Tools & IDEs** | <img src="https://skillicons.dev/icons?i=vscode,androidstudio,idea" height="40" align="center" alt="Tools" /> |
-
-</div>
-
-<img src="assets/divider.svg" width="100%" alt="divider" />
-
-## 📊 Analytics & Activity
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="profile-3d-contrib/profile-night-rainbow.svg">
-  <source media="(prefers-color-scheme: light)" srcset="profile-3d-contrib/profile-gitblock.svg">
-  <img src="profile-3d-contrib/profile-night-rainbow.svg" width="90%" alt="Lego 3D contribution calendar">
-</picture>
-
-<br><br>
-
-<table>
-<tr>
-<td width="33%" align="center" valign="top">
-  <img src="assets/metrics.base.svg" width="100%" alt="GitHub statistics">
-</td>
-<td width="33%" align="center" valign="top">
-  <img src="assets/metrics.languages.svg" width="100%" alt="most used languages">
-</td>
-<td width="33%" align="center" valign="top">
-  <img src="assets/metrics.leetcode.svg" width="100%" alt="LeetCode statistics">
-</td>
-</tr>
-</table>
-
-</div>
-
-<img src="assets/divider.svg" width="100%" alt="divider" />
-
-## 🌌 Featured AI & Full-Stack Projects
-
-Building highly scalable architectures powered by state-of-the-art AI.
-
-<div align="center">
-
-<!-- Cards generated by scripts/cards.py from assets/projects.json.
-     Stars, forks and language are pulled live from the API on every run. -->
-<table>
-<tr>
-<td width="50%">
-  <a href="https://github.com/NandiVardhan2007/Smart-Apply">
-    <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/card-Smart-Apply-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/card-Smart-Apply-light.svg">
-      <img src="assets/card-Smart-Apply-dark.svg" width="420" alt="Smart-Apply">
-    </picture>
-  </a>
-</td>
-<td width="50%">
-  <a href="https://github.com/NandiVardhan2007/VISION">
-    <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/card-VISION-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/card-VISION-light.svg">
-      <img src="assets/card-VISION-dark.svg" width="420" alt="VISION">
-    </picture>
-  </a>
-</td>
-</tr>
-</table>
-
-| Project | Live Demo | Tech Stack |
-|:---|:---|:---|
-| **[Smart-Apply](https://github.com/NandiVardhan2007/Smart-Apply)** | [Live](https://smartapplies.app) | `FastAPI` `MongoDB` `AI` |
-| **[VISION](https://github.com/NandiVardhan2007/VISION)** | - | `Python` `Go` `AI` |
-| **[Personal-Portfolio](https://github.com/NandiVardhan2007/Personal-Portfolio)** | [Live](https://nandu-portfolio.onrender.com) | `Next.js` `TypeScript` |
-
-</div>
-
-<img src="assets/divider.svg" width="100%" alt="divider" />
+<p align="center">
+<a href="https://www.linkedin.com/in/nandivardhanreddy007/">linkedin</a> &nbsp;/&nbsp; <a href="mailto:nandivardhan.dev@gmail.com">email</a> &nbsp;/&nbsp; <a href="https://leetcode.com/u/Nandu_2007">leetcode</a> &nbsp;/&nbsp; <a href="https://smartapplies.app">smart-apply</a>
+</p>

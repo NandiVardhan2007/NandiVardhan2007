@@ -1,0 +1,45 @@
+name: Update profile art
+
+# Refreshes contribution data and animated SVG README cards daily.
+
+"on":
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "fonts/**"
+      - "nandu-ascii.svg"
+      - ".github/workflows/update-profile-art.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Scrape real contribution data (no auth needed)
+        run: python scripts/fetch_contributions.py
+
+      - name: Render README cards (hero, heatmap, activity, tiles, repos)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/render_readme_cards.py
+
+      - name: Commit updated art
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh profile README cards [skip ci]"
+          file_pattern: "data/contributions.json cards/*.svg"

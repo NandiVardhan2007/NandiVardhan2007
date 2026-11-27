@@ -156,6 +156,26 @@ def text_lines(x, y, lines, lh, attrs):
     )
 
 
+ICON_STAR = (
+    "M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 "
+    "2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 "
+    "01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"
+)
+
+
+def icon_star(x, y, size, fill):
+    s = size / 16.0
+    return f'<path transform="translate({x:.1f},{y:.1f}) scale({s:.3f})" fill="{fill}" d="{ICON_STAR}"/>'
+
+
+def icon_ne(x, y, size, stroke, cls="nu"):
+    return (
+        f'<g class="{cls}" transform="translate({x:.1f},{y:.1f})">'
+        f'<path d="M1 {size - 1:.1f}L{size - 1:.1f} 1M{size * 0.35:.1f} 1h{size * 0.65 - 1:.1f}v{size * 0.65 - 1:.1f}" '
+        f'fill="none" stroke="{stroke}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>'
+    )
+
+
 # ---- 1 · hero (tasteskill.dev ember sunrise canvas) ---------------------------
 def hero():
     h = 420
@@ -213,11 +233,11 @@ def hero():
   <text class="r" {d(0.15)} x="44" y="186" font-family="{SERIF}" font-size="112" letter-spacing="-2.5" fill="{CREAM_TEXT}">Nandi</text>
   <text class="r" {d(0.3)} x="44" y="286" font-family="{SERIF}" font-style="italic" font-size="112" letter-spacing="-2.5" fill="url(#shine)">Vardhan</text>
   <g class="r" {d(0.55)}>
-    {text_lines(48, 336, ["Low-latency Rust &amp; C++ audio pipelines,", "native Android systems, and local AI tools."], 26, f'font-family="{SANS}" font-size="17" fill="{CREAM_SOFT}" fill-opacity=".88"')}
+    {text_lines(48, 336, ["Low-latency Rust & C++ audio pipelines,", "native Android systems, and local AI tools."], 26, f'font-family="{SANS}" font-size="17" fill="{CREAM_SOFT}" fill-opacity=".88"')}
   </g>
   <g class="f" {d(0.8)}>
     <text x="48" y="396" font-family="{MONO}" font-size="12.5" fill="{PEACH}">github.com/NandiVardhan2007</text>
-    <text class="nu" x="268" y="396" font-family="{MONO}" font-size="13" fill="{ORANGE_HOT}">&#8599;</text>
+    {icon_ne(256, 386, 10, ORANGE_HOT)}
   </g>
   <g transform="translate(502 82) scale({s}) translate(-20 -37)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
     {''.join(portrait)}
@@ -278,6 +298,7 @@ def tile(name, label, color, on, accent_arrow, num, word, blurb, delay, pos):
 <g class="ti" {d(delay)}>
   <g clip-path="url(#card)">
     <rect width="{TILE_W}" height="{TILE_H}" fill="{color}"/>
+    {f'<rect x="0.5" y="0.5" width="{TILE_W - 1}" height="{TILE_H - 1}" rx="13.5" fill="none" stroke="{PEACH}" stroke-opacity=".22"/>' if color == INK else ""}
     <circle class="rg" {d(delay + 0.5)} cx="{TILE_W - 40}" cy="{TILE_H - 40}" r="60" fill="none" stroke="{on}" stroke-opacity=".45" stroke-width="2"/>
     <rect class="sh" style="animation-delay:{delay + 1.4:.2f}s" x="0" y="-20" width="90" height="{TILE_H + 40}" fill="url(#gl)" transform="translate(-260 0)"/>
   </g>
@@ -309,7 +330,7 @@ def activity(data):
     monthly = data["monthly"][-12:]
     best = max(monthly, key=lambda m: m["total"])
     top = max(best["total"], 1)
-    x0, x1, base, maxh, gap = 40, 600, 292, 140, 10
+    x0, x1, base, maxh, gap = 40, 600, 292, 130, 10
     bw = (x1 - x0 - gap * (len(monthly) - 1)) / len(monthly)
     bars = []
     for i, m in enumerate(monthly):
@@ -397,21 +418,29 @@ def repo_card(i, name, desc, lang, color, info):
     stars = info.get("stars", 0)
     forks = info.get("forks", 0)
     lang = info.get("language") or lang
-    parts = [lang]
+    fy = REPO_H - 24
+    mx = 24
+    meta_parts = [f'<text x="{mx}" y="{fy}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">{escape(lang)}</text>']
+    mx += len(lang) * 7.1 + 14
     if stars:
-        parts.append(f"★ {stars}")
+        meta_parts.append(f'<text x="{mx}" y="{fy}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">·</text>')
+        mx += 14
+        meta_parts.append(icon_star(mx, fy - 10, 11, LABEL))
+        s_txt = str(stars)
+        meta_parts.append(f'<text x="{mx + 15}" y="{fy}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">{s_txt}</text>')
+        mx += 15 + len(s_txt) * 7.1 + 14
     if forks:
-        parts.append(f"{forks} forks")
+        f_txt = f"·  {forks} fork{'s' if forks != 1 else ''}"
+        meta_parts.append(f'<text x="{mx}" y="{fy}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">{f_txt}</text>')
     if not stars and not forks:
-        parts.append("live")
-    meta = "  ·  ".join(parts)
+        meta_parts.append(f'<text x="{mx}" y="{fy}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">·  live</text>')
     body = f"""
 <rect x="0.5" y="0.5" width="{REPO_W - 1}" height="{REPO_H - 1}" rx="13.5" fill="{CREAM}" stroke="{HAIR}"/>
 <g class="r" {d(delay)}>
   <rect x="24" y="30" width="8" height="8" rx="2" fill="{color}"/>
   <text x="40" y="39" font-family="{SANS}" font-weight="600" font-size="18" fill="{INK}">{escape(name)}</text>
   {text_lines(24, 72, wrap(desc, 34), 21, f'font-family="{SANS}" font-size="13.5" fill="{INK_SOFT}"')}
-  <text x="24" y="{REPO_H - 24}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">{escape(meta)}</text>
+  {''.join(meta_parts)}
 </g>
 """
     write(
@@ -450,7 +479,7 @@ def stat_card(slug, label, handle, color, big_num, big_word, badge_right, mid_sv
   <rect x="{pad}" y="28" width="8" height="8" rx="2" fill="{color}"/>
   <text x="{pad + 16}" y="36" font-family="{MONO}" font-size="11.5" letter-spacing="1" fill="{INK}">{escape(label)}</text>
   <text x="{pad + 16 + len(label) * 7.6 + 10}" y="36" font-family="{MONO}" font-size="11" fill="{MUTED}">@{escape(handle)}</text>
-  <text class="nu" x="{STAT_W - pad}" y="36" text-anchor="end" font-family="{MONO}" font-size="13" fill="{color}">&#8599;</text>
+  {icon_ne(STAT_W - pad - 10, 26, 10, color)}
   {count_up(str(big_num), big_word, pad, 92, f'font-family="{SERIF}" font-size="46" fill="{INK}"', delay + 0.15)}
   <text x="{STAT_W - pad}" y="88" text-anchor="end" font-family="{MONO}" font-size="11.5" fill="{LABEL}">{escape(badge_right)}</text>
   {mid_svg}
@@ -535,8 +564,10 @@ def coding_profiles(stats):
     pills = []
     px = pad
     pill_colors = [(PEACH, INK), (CREAM_SUNK, INK), (INK, CREAM_TEXT)]
+    norm = {"Sql": "SQL"}
     for idx, b in enumerate(badges):
-        txt = f'{b["name"]} {b["stars"]}★' if b.get("stars") else f'{b["name"]} ({b.get("solved", 0)})'
+        b_name = norm.get(b["name"], b["name"])
+        txt = f'{b_name} {b["stars"]}★' if b.get("stars") else f'{b_name} ({b.get("solved", 0)})'
         pw = max(len(txt) * 7.4 + 22, 76)
         bg, fg = pill_colors[idx % len(pill_colors)]
         pills.append(
@@ -544,7 +575,7 @@ def coding_profiles(stats):
             f'<text class="f" style="animation-delay:{5.55 + idx * 0.08:.2f}s" x="{px + pw / 2:.1f}" y="127" text-anchor="middle" font-family="{MONO}" font-size="11" fill="{fg}">{escape(txt)}</text>'
         )
         px += pw + 8
-    hr_footer = "  ·  ".join(f'{b["name"]} ({b["solved"]})' for b in badges) or "Domain badges"
+    hr_footer = "  ·  ".join(f'{norm.get(b["name"], b["name"])} ({b["solved"]})' for b in badges) or "Domain badges"
     stat_card(
         "hackerrank",
         "HACKERRANK",
@@ -576,9 +607,9 @@ def coding_profiles(stats):
         RUST,
         str(g_solved),
         "solved",
-        f"Score {g_score}",
+        f'Rank {gfg.get("institute_rank", "—")}',
         gfg_bar,
-        f'Coding Score {g_score}  ·  Institute Rank {gfg.get("institute_rank", "—")}',
+        f'Coding Score {g_score}  ·  Aditya COE',
         5.46,
         1,
     )
@@ -615,24 +646,26 @@ def heatmap(data):
     ncols = (len(days) + lead + 6) // 7
     right = gx + ncols * step - 3
     labels = "".join(
-        f'<text x="{gx + col * step}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">{m}</text>'
-        for col, m in months if col < ncols - 12
+        f'<text x="{gx + col * step}" y="{gy + 7 * step + 18}" font-family="{MONO}" font-size="11" fill="{MUTED}">{m}</text>'
+        for col, m in months if col < ncols - 1
     )
-    legend_x = right - len(EMBER) * 14
+    legend_x = right - len(EMBER) * 14 - 36
     legend = "".join(
-        f'<rect x="{legend_x + i * 14}" y="{gy + 7 * step + 6}" width="11" height="11" rx="2.5" fill="{c}"/>'
+        f'<rect x="{legend_x + i * 14}" y="50" width="11" height="11" rx="2.5" fill="{c}"/>'
         for i, c in enumerate(EMBER)
     )
     h = gy + 7 * step + 44
     body = f"""
 <rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="13.5" fill="{CREAM}" stroke="{HAIR}"/>
 <text class="r" {d(0.8)} x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}">Every day, <tspan font-style="italic" fill="{ORANGE}">in ember</tspan></text>
-<text class="f" {d(0.8)} x="{right}" y="60" text-anchor="end" font-family="{MONO}" font-size="11.5" letter-spacing="1" fill="{MUTED}">REFRESHED DAILY</text>
+<g class="f" {d(0.8)}>
+  <text x="{right}" y="40" text-anchor="end" font-family="{MONO}" font-size="10.5" letter-spacing="1" fill="{MUTED}">REFRESHED DAILY</text>
+  <text x="{legend_x - 8}" y="60" text-anchor="end" font-family="{MONO}" font-size="11" fill="{MUTED}">less</text>
+  {legend}
+  <text x="{legend_x + len(EMBER) * 14 + 2}" y="60" font-family="{MONO}" font-size="11" fill="{MUTED}">more</text>
+</g>
 {''.join(cells)}
-<g class="f" {d(2.4)}>{labels}
-<text x="{legend_x - 8}" y="{gy + 7 * step + 16}" text-anchor="end" font-family="{MONO}" font-size="11" fill="{MUTED}">less</text>
-{legend}
-<text x="{legend_x + len(EMBER) * 14 + 2}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">more</text></g>
+<g class="f" {d(2.4)}>{labels}</g>
 """
     write(
         "heatmap.svg",

@@ -24,6 +24,7 @@ from html import escape
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
 DATA = os.path.join(ROOT, "data", "contributions.json")
+CODING_DATA = os.path.join(ROOT, "data", "coding_stats.json")
 OUT = os.path.join(ROOT, "cards")
 FONTS = os.path.join(ROOT, "fonts")
 PORTRAIT = os.path.join(ROOT, "nandu-ascii.svg")
@@ -65,6 +66,7 @@ BASE_CSS = """
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes pop{0%{opacity:0;transform:scale(.3)}70%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes nudge{0%,100%{transform:none}50%{transform:translateX(4px)}}
@@ -72,6 +74,7 @@ BASE_CSS = """
 .r{opacity:0;animation:rise .8s cubic-bezier(.16,1,.3,1) both;transform-box:fill-box}
 .f{opacity:0;animation:fade .9s ease-out both}
 .g{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:grow .8s cubic-bezier(.16,1,.3,1) both}
+.gx{transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:growx .8s cubic-bezier(.16,1,.3,1) both}
 .p{opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .4s ease-out both}
 .live{animation:pulse 1.6s ease-in-out infinite}
 .n{transform-box:fill-box;animation:nudge 1.8s ease-in-out infinite}
@@ -88,7 +91,7 @@ BASE_CSS = """
 .ro{transform-box:fill-box;animation:roll .8s cubic-bezier(.16,1,.3,1) both}
 .sh{animation:sheen 5s ease-in-out infinite}
 .rg{opacity:0;transform-box:fill-box;transform-origin:center;animation:ring 1s ease-out both}
-@media (prefers-reduced-motion: reduce){.r,.f,.g,.p,.live,.n,.nu,.ti,.sl,.ai,.ro,.rg{animation:none!important;opacity:1!important;transform:none!important}.sh,.rg{display:none}}
+@media (prefers-reduced-motion: reduce){.r,.f,.g,.gx,.p,.live,.n,.nu,.ti,.sl,.ai,.ro,.rg{animation:none!important;opacity:1!important;transform:none!important}.sh,.rg{display:none}}
 """
 
 
@@ -116,7 +119,7 @@ def svg(w, h, body, fonts, label, extra_css="", left=0, right=0, bottom=BOTTOM):
     w, h = w + left + right, h + bottom
     css = font_face(fonts) + BASE_CSS + extra_css
     if os.environ.get("STATIC"):  # preview: show every animation at its end state
-        css += ".r,.f,.g,.p,.live,.n,.nu,.ti,.sl,.ai,.ro{animation:none!important;opacity:1!important;transform:none!important}.sh,.rg{display:none}"
+        css += ".r,.f,.g,.gx,.p,.live,.n,.nu,.ti,.sl,.ai,.ro{animation:none!important;opacity:1!important;transform:none!important}.sh,.rg{display:none}"
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{w:.3f}" height="{h}" viewBox="0 0 {w:.3f} {h}" '
         f'role="img" aria-label="{escape(label)}"><title>{escape(label)}</title>'
@@ -425,14 +428,160 @@ def repo_card(i, name, desc, lang, color, info):
     )
 
 
-def section_title(text, italic, theme):
+def section_title(text, italic, theme, slug="coding", delay=4.4):
     fg = CREAM_TEXT if theme == "dark" else INK
     accent = ORANGE_HOT if theme == "dark" else LABEL
     body = (
-        f'<text class="r" {d(4.4)} x="2" y="46" font-family="{SERIF}" font-size="34" fill="{fg}">{escape(text)} '
+        f'<text class="r" {d(delay)} x="2" y="46" font-family="{SERIF}" font-size="34" fill="{fg}">{escape(text)} '
         f'<tspan font-style="italic" fill="{accent}">{escape(italic)}</tspan></text>'
     )
-    write(f"title-coding-{theme}.svg", svg(W, 64, body, ["serif", "serif-i"], f"{text} {italic}", bottom=0))
+    write(f"title-{slug}-{theme}.svg", svg(W, 64, body, ["serif", "serif-i"], f"{text} {italic}", bottom=0))
+
+
+# ---- 4b · coding profile cards (2x2 grid at width=50%) ----------------------
+STAT_W, STAT_H = (W - GAP) / 2, 186  # 434 x 186; 6px inner margin -> 12px center gap
+
+
+def stat_card(slug, label, handle, color, big_num, big_word, badge_right, mid_svg, footer_text, delay, pos):
+    pad = 24
+    body = f"""
+<rect x="0.5" y="0.5" width="{STAT_W - 1}" height="{STAT_H - 1}" rx="13.5" fill="{CREAM}" stroke="{HAIR}"/>
+<g class="r" {d(delay)}>
+  <rect x="{pad}" y="28" width="8" height="8" rx="2" fill="{color}"/>
+  <text x="{pad + 16}" y="36" font-family="{MONO}" font-size="11.5" letter-spacing="1" fill="{INK}">{escape(label)}</text>
+  <text x="{pad + 16 + len(label) * 7.6 + 10}" y="36" font-family="{MONO}" font-size="11" fill="{MUTED}">@{escape(handle)}</text>
+  <text class="nu" x="{STAT_W - pad}" y="36" text-anchor="end" font-family="{MONO}" font-size="13" fill="{color}">&#8599;</text>
+  {count_up(str(big_num), big_word, pad, 92, f'font-family="{SERIF}" font-size="46" fill="{INK}"', delay + 0.15)}
+  <text x="{STAT_W - pad}" y="88" text-anchor="end" font-family="{MONO}" font-size="11.5" fill="{LABEL}">{escape(badge_right)}</text>
+  {mid_svg}
+  <text x="{pad}" y="{STAT_H - 22}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">{escape(footer_text)}</text>
+</g>
+"""
+    write(
+        f"stats-{slug}.svg",
+        svg(
+            STAT_W,
+            STAT_H,
+            body,
+            ["serif", "serif-i", "sans", "mono"],
+            f"{label} (@{handle}): {big_num} {big_word}. {footer_text}",
+            left=6 * pos,
+            right=6 - 6 * pos,
+        ),
+    )
+
+
+def coding_profiles(stats):
+    pad = 24
+    bar_w = STAT_W - 2 * pad  # 386
+
+    # 1. LeetCode
+    lc = stats.get("leetcode", {})
+    solved = lc.get("solved", 0)
+    easy, med, hard = lc.get("easy", 0), lc.get("medium", 0), lc.get("hard", 0)
+    tot = max(easy + med + hard, 1)
+    we = bar_w * (easy / tot)
+    wm = bar_w * (med / tot)
+    wh = max(bar_w - we - wm, 0)
+    lc_bar = (
+        f'<rect x="{pad}" y="118" width="{bar_w}" height="8" rx="4" fill="{CREAM_SUNK}"/>'
+        f'<rect class="gx" style="animation-delay:5.35s" x="{pad}" y="118" width="{we:.1f}" height="8" rx="4" fill="{ORANGE_HOT}"/>'
+        f'<rect class="gx" style="animation-delay:5.45s" x="{pad + we:.1f}" y="118" width="{wm:.1f}" height="8" rx="2" fill="{ORANGE}"/>'
+        f'<rect class="gx" style="animation-delay:5.55s" x="{pad + we + wm:.1f}" y="118" width="{wh:.1f}" height="8" rx="4" fill="{RUST}"/>'
+    )
+    stat_card(
+        "leetcode",
+        "LEETCODE",
+        lc.get("username", "Nandu_2007_"),
+        ORANGE,
+        str(solved),
+        "solved",
+        f'{lc.get("acceptance", "0%")} acc · {lc.get("streak", 0)}d streak',
+        lc_bar,
+        f'Easy {easy}  ·  Med {med}  ·  Hard {hard}  ·  Rank {lc.get("ranking", "—")}',
+        5.1,
+        0,
+    )
+
+    # 2. CodeChef
+    cc = stats.get("codechef", {})
+    rating = cc.get("rating", 0)
+    cc_pct = min(max(rating / 2000.0, 0.08), 1.0)
+    cc_bar = (
+        f'<rect x="{pad}" y="118" width="{bar_w}" height="8" rx="4" fill="{CREAM_SUNK}"/>'
+        f'<rect class="gx" style="animation-delay:5.45s" x="{pad}" y="118" width="{bar_w * cc_pct:.1f}" height="8" rx="4" fill="{INK}"/>'
+        f'<circle cx="{pad + bar_w * cc_pct:.1f}" cy="122" r="4" fill="{ORANGE}"/>'
+    )
+    stars = cc.get("stars", 0)
+    div = cc.get("division", "")
+    cc_badge = f'{stars}★ · {div}' if stars and div else (f"{stars}★" if stars else div or "Rated")
+    stat_card(
+        "codechef",
+        "CODECHEF",
+        cc.get("username", "nandu_2007"),
+        INK,
+        str(rating),
+        "rating",
+        cc_badge,
+        cc_bar,
+        f'{cc.get("solved", 0)} solved  ·  Global {cc.get("global_rank", "—")}  ·  IN {cc.get("country_rank", "—")}',
+        5.22,
+        1,
+    )
+
+    # 3. HackerRank
+    hr = stats.get("hackerrank", {})
+    badges = hr.get("badges", [])[:3]
+    pills = []
+    px = pad
+    pill_colors = [(PEACH, INK), (CREAM_SUNK, INK), (INK, CREAM_TEXT)]
+    for idx, b in enumerate(badges):
+        txt = f'{b["name"]} {b["stars"]}★' if b.get("stars") else f'{b["name"]} ({b.get("solved", 0)})'
+        pw = max(len(txt) * 7.4 + 22, 76)
+        bg, fg = pill_colors[idx % len(pill_colors)]
+        pills.append(
+            f'<rect class="f" style="animation-delay:{5.55 + idx * 0.08:.2f}s" x="{px:.1f}" y="110" width="{pw:.1f}" height="26" rx="13" fill="{bg}"/>'
+            f'<text class="f" style="animation-delay:{5.55 + idx * 0.08:.2f}s" x="{px + pw / 2:.1f}" y="127" text-anchor="middle" font-family="{MONO}" font-size="11" fill="{fg}">{escape(txt)}</text>'
+        )
+        px += pw + 8
+    hr_footer = "  ·  ".join(f'{b["name"]} ({b["solved"]})' for b in badges) or "Domain badges"
+    stat_card(
+        "hackerrank",
+        "HACKERRANK",
+        hr.get("username", "nandu_2007"),
+        LABEL,
+        str(hr.get("total_solved", 0)),
+        "solved",
+        f'{hr.get("top_stars", 0)}★ peak',
+        "".join(pills),
+        hr_footer,
+        5.34,
+        0,
+    )
+
+    # 4. GeeksforGeeks
+    gfg = stats.get("gfg", {})
+    g_solved = gfg.get("solved", 0)
+    g_score = gfg.get("score", 0)
+    g_pct = min(max(g_score / 200.0, 0.10), 1.0)
+    gfg_bar = (
+        f'<rect x="{pad}" y="118" width="{bar_w}" height="8" rx="4" fill="{CREAM_SUNK}"/>'
+        f'<rect class="gx" style="animation-delay:5.70s" x="{pad}" y="118" width="{bar_w * g_pct:.1f}" height="8" rx="4" fill="{RUST}"/>'
+        f'<circle cx="{pad + bar_w * g_pct:.1f}" cy="122" r="4" fill="{ORANGE_HOT}"/>'
+    )
+    stat_card(
+        "gfg",
+        "GEEKSFORGEEKS",
+        gfg.get("username", "nandu07"),
+        RUST,
+        str(g_solved),
+        "solved",
+        f"Score {g_score}",
+        gfg_bar,
+        f'Coding Score {g_score}  ·  Institute Rank {gfg.get("institute_rank", "—")}',
+        5.46,
+        1,
+    )
 
 
 # ---- 5 · ember contribution graph -------------------------------------------
@@ -570,6 +719,12 @@ if __name__ == "__main__":
     activity(data)
     for i, (name, desc, lang, color) in enumerate(REPOS):
         repo_card(i, name, desc, lang, color, repo_info.get(name, {}))
-    section_title("What I'm", "building", "dark")
-    section_title("What I'm", "building", "light")
+    section_title("What I'm", "building", "dark", slug="coding", delay=4.4)
+    section_title("What I'm", "building", "light", slug="coding", delay=4.4)
+    if os.path.exists(CODING_DATA):
+        with open(CODING_DATA, encoding="utf-8") as f:
+            coding_stats = json.load(f)
+        section_title("Coding", "profiles", "dark", slug="profiles", delay=4.95)
+        section_title("Coding", "profiles", "light", slug="profiles", delay=4.95)
+        coding_profiles(coding_stats)
     heatmap(data)

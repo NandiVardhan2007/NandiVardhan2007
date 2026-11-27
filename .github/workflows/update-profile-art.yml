@@ -37,7 +37,10 @@ jobs:
       - name: Scrape real contribution data (no auth needed)
         run: python scripts/fetch_contributions.py
 
-      - name: Render README cards (hero, heatmap, activity, tiles, repos)
+      - name: Scrape coding profile stats (LeetCode, CodeChef, HackerRank, GFG)
+        run: python scripts/fetch_coding_stats.py
+
+      - name: Render README cards (hero, heatmap, activity, tiles, repos, coding profiles)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/render_readme_cards.py
@@ -46,7 +49,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/contributions.json cards/*.svg
+          git add data/contributions.json data/coding_stats.json cards/*.svg
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0

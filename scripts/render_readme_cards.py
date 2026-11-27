@@ -2,8 +2,10 @@
 """
 Render the profile README's cards as animated SVGs into cards/.
 
-Design: "Three Worlds" (paper, ink, and three accent colours: BUILD blue,
-COMPETE red, CRAFT yellow; Instrument Serif, Geist, Geist Mono).
+Design: Warm Cream & Ember editorial system inspired by tasteskill.dev and
+the user's portfolio (espresso ink #1a0e08, warm cream #f8f4ee, ember orange
+#ff5b14 / #ff7a2e, burnt rust #7a2306, warm peach #ffc9a3; Instrument Serif,
+Google Sans Flex, Google Sans Code).
 
 Every card is a standalone SVG shown through <img>, so it only uses what GitHub
 allows inside <img>: inline CSS animations, SMIL <animate>/<set>, and subset
@@ -28,28 +30,35 @@ PORTRAIT = os.path.join(ROOT, "nandu-ascii.svg")
 
 USERNAME = os.environ.get("GH_PROFILE_USER", "NandiVardhan2007")
 
-# ---- brand tokens -----------------------------------------------------------
-PAPER = "#f3f3f1"
-PAPER_DEEP = "#e2e2de"
-INK = "#111111"
-INK_SOFT = "#3a3a3c"
-MUTED = "#6e6e73"
-RULE = "#dcdcd7"
-TECH = "#2f55ff"
-STUDIO = "#ef3b2d"
-LEARN = "#ffc81a"
+# ---- tasteskill.dev + portfolio design tokens -------------------------------
+CREAM = "#f8f4ee"
+CREAM_SUNK = "#ebe3d9"
+SURFACE = "#fffaf6"
+INK_DEEP = "#140a05"
+INK = "#1a0e08"
+INK_2 = "#2a1309"
+INK_SOFT = "#5b483d"
+MUTED = "#7c675a"
+HAIR = "#e5ddd3"
+RUST = "#7a2306"
+LABEL = "#c2410c"
+ORANGE = "#ff5b14"
+ORANGE_HOT = "#ff7a2e"
+PEACH = "#ffc9a3"
+CREAM_TEXT = "#fff6ef"
+CREAM_SOFT = "#fff0e4"
 W = 880  # full card width, GitHub's README column at 100%
 
 SERIF = "'Instrument Serif', Georgia, serif"
-SANS = "Geist, system-ui, -apple-system, sans-serif"
-MONO = "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
+SANS = "'Google Sans Flex', system-ui, -apple-system, sans-serif"
+MONO = "'Google Sans Code', ui-monospace, SFMono-Regular, Menlo, monospace"
 
 FONT_FILES = {
     "serif": ("Instrument Serif", "normal", 400, "serif-400.woff"),
     "serif-i": ("Instrument Serif", "italic", 400, "serif-italic.woff"),
-    "sans": ("Geist", "normal", 400, "geist-400.woff"),
-    "sans-b": ("Geist", "normal", 600, "geist-600.woff"),
-    "mono": ("Geist Mono", "normal", 400, "geistmono-400.woff"),
+    "sans": ("Google Sans Flex", "normal", 400, "gsflex-400.woff"),
+    "sans-b": ("Google Sans Flex", "normal", 600, "gsflex-600.woff"),
+    "mono": ("Google Sans Code", "normal", 400, "gscode-400.woff"),
 }
 
 BASE_CSS = """
@@ -60,9 +69,9 @@ BASE_CSS = """
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes nudge{0%,100%{transform:none}50%{transform:translateX(4px)}}
 @keyframes nudgeup{0%,100%{transform:none}50%{transform:translate(3px,-3px)}}
-.r{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box}
+.r{opacity:0;animation:rise .8s cubic-bezier(.16,1,.3,1) both;transform-box:fill-box}
 .f{opacity:0;animation:fade .9s ease-out both}
-.g{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:grow .8s cubic-bezier(.2,.7,.2,1) both}
+.g{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:grow .8s cubic-bezier(.16,1,.3,1) both}
 .p{opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .4s ease-out both}
 .live{animation:pulse 1.6s ease-in-out infinite}
 .n{transform-box:fill-box;animation:nudge 1.8s ease-in-out infinite}
@@ -73,10 +82,10 @@ BASE_CSS = """
 @keyframes roll{from{transform:translateY(60px)}to{transform:none}}
 @keyframes sheen{0%{transform:translateX(-260px) skewX(-20deg)}22%,100%{transform:translateX(420px) skewX(-20deg)}}
 @keyframes ring{0%{opacity:.7;transform:scale(.2)}100%{opacity:0;transform:scale(2.4)}}
-.ti{opacity:0;transform-box:fill-box;transform-origin:50% 60%;animation:tilein 1.1s cubic-bezier(.2,.8,.2,1) both}
-.sl{opacity:0;transform-box:fill-box;animation:slidein .6s cubic-bezier(.2,.7,.2,1) both}
-.ai{opacity:0;transform-box:fill-box;animation:arrowin .7s cubic-bezier(.2,.7,.2,1) both}
-.ro{transform-box:fill-box;animation:roll .8s cubic-bezier(.15,.8,.2,1) both}
+.ti{opacity:0;transform-box:fill-box;transform-origin:50% 60%;animation:tilein 1.1s cubic-bezier(.16,1,.3,1) both}
+.sl{opacity:0;transform-box:fill-box;animation:slidein .6s cubic-bezier(.16,1,.3,1) both}
+.ai{opacity:0;transform-box:fill-box;animation:arrowin .7s cubic-bezier(.16,1,.3,1) both}
+.ro{transform-box:fill-box;animation:roll .8s cubic-bezier(.16,1,.3,1) both}
 .sh{animation:sheen 5s ease-in-out infinite}
 .rg{opacity:0;transform-box:fill-box;transform-origin:center;animation:ring 1s ease-out both}
 @media (prefers-reduced-motion: reduce){.r,.f,.g,.p,.live,.n,.nu,.ti,.sl,.ai,.ro,.rg{animation:none!important;opacity:1!important;transform:none!important}.sh,.rg{display:none}}
@@ -144,7 +153,7 @@ def text_lines(x, y, lines, lh, attrs):
     )
 
 
-# ---- 1 · hero -----------------------------------------------------------------
+# ---- 1 · hero (tasteskill.dev ember sunrise canvas) ---------------------------
 def hero():
     h = 420
     with open(PORTRAIT, encoding="utf-8") as f:
@@ -154,13 +163,13 @@ def hero():
     for i, (y, txt) in enumerate(rows):
         if os.environ.get("STATIC"):
             portrait.append(
-                f'<text xml:space="preserve" x="20" y="{y}" fill="{INK}" font-size="7.2" '
+                f'<text xml:space="preserve" x="20" y="{y}" fill="{PEACH}" fill-opacity="0.92" font-size="7.2" '
                 f'textLength="800" lengthAdjust="spacing">{txt}</text>'
             )
         else:
             portrait.append(
                 f'<text class="f" style="animation-delay:{0.25 + i * 0.018:.3f}s;animation-duration:.35s" '
-                f'xml:space="preserve" x="20" y="{y}" fill="{INK}" font-size="7.2" '
+                f'xml:space="preserve" x="20" y="{y}" fill="{PEACH}" fill-opacity="0.92" font-size="7.2" '
                 f'textLength="800" lengthAdjust="spacing">{txt}</text>'
             )
     s = 0.465
@@ -171,27 +180,41 @@ def hero():
     body = f"""
 <defs>
   <clipPath id="hero-clip"><rect width="{W}" height="{h}" rx="14"/></clipPath>
+  <linearGradient id="ember-bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="{INK_DEEP}"/>
+    <stop offset=".52" stop-color="{INK_2}"/>
+    <stop offset=".85" stop-color="#4e1907"/>
+    <stop offset="1" stop-color="{RUST}"/>
+  </linearGradient>
+  <radialGradient id="ember-sun" cx="68%" cy="76%" r="58%">
+    <stop offset="0" stop-color="{ORANGE_HOT}" stop-opacity=".42"/>
+    <stop offset=".42" stop-color="{ORANGE}" stop-opacity=".18"/>
+    <stop offset="1" stop-color="{INK_DEEP}" stop-opacity="0"/>
+  </radialGradient>
   <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="600" y2="0">
-    <stop offset="0" stop-color="{INK}"/><stop offset=".42" stop-color="{INK}"/>
-    <stop offset=".5" stop-color="{TECH}"/><stop offset=".58" stop-color="{INK}"/>
-    <stop offset="1" stop-color="{INK}"/>
+    <stop offset="0" stop-color="{PEACH}"/><stop offset=".40" stop-color="{PEACH}"/>
+    <stop offset=".50" stop-color="{CREAM_TEXT}"/><stop offset=".60" stop-color="{ORANGE_HOT}"/>
+    <stop offset="1" stop-color="{PEACH}"/>
     {shine_anim}
   </linearGradient>
 </defs>
 <g clip-path="url(#hero-clip)">
-  <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
+  <rect width="{W}" height="{h}" rx="14" fill="url(#ember-bg)"/>
+  <rect width="{W}" height="{h}" rx="14" fill="url(#ember-sun)"/>
+  <rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="13.5" fill="none" stroke="{PEACH}" stroke-opacity=".18"/>
   <g class="f" {d(0)}>
-    <rect class="live" x="48" y="49" width="8" height="8" rx="2" fill="{TECH}"/>
-    <text x="66" y="57" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">AI ARCHITECT &amp; FULL-STACK ENGINEER</text>
+    <rect x="44" y="38" width="332" height="28" rx="14" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+    <circle class="live" cx="60" cy="52" r="4" fill="{ORANGE_HOT}"/>
+    <text x="73" y="56" font-family="{MONO}" font-size="11" letter-spacing="0.8" fill="{CREAM_SOFT}">SYSTEMS &amp; SOFTWARE ENGINEER</text>
   </g>
-  <text class="r" {d(0.15)} x="44" y="186" font-family="{SERIF}" font-size="112" letter-spacing="-2.5" fill="{INK}">Nandi</text>
+  <text class="r" {d(0.15)} x="44" y="186" font-family="{SERIF}" font-size="112" letter-spacing="-2.5" fill="{CREAM_TEXT}">Nandi</text>
   <text class="r" {d(0.3)} x="44" y="286" font-family="{SERIF}" font-style="italic" font-size="112" letter-spacing="-2.5" fill="url(#shine)">Vardhan</text>
   <g class="r" {d(0.55)}>
-    {text_lines(48, 336, ["I build intelligent AI pipelines, robust backends,", "and cross-platform apps. Shipping HARMONIX."], 27, f'font-family="{SANS}" font-size="18" fill="{INK_SOFT}"')}
+    {text_lines(48, 336, ["Low-latency Rust &amp; C++ audio pipelines,", "native Android systems, and local AI tools."], 26, f'font-family="{SANS}" font-size="17" fill="{CREAM_SOFT}" fill-opacity=".88"')}
   </g>
   <g class="f" {d(0.8)}>
-    <text x="48" y="396" font-family="{MONO}" font-size="13" fill="{INK}">github.com/NandiVardhan2007</text>
-    <text class="nu" x="266" y="396" font-family="{MONO}" font-size="13" fill="{TECH}">&#8599;</text>
+    <text x="48" y="396" font-family="{MONO}" font-size="12.5" fill="{PEACH}">github.com/NandiVardhan2007</text>
+    <text class="nu" x="268" y="396" font-family="{MONO}" font-size="13" fill="{ORANGE_HOT}">&#8599;</text>
   </g>
   <g transform="translate(502 82) scale({s}) translate(-20 -37)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
     {''.join(portrait)}
@@ -205,12 +228,12 @@ def hero():
             h,
             body,
             ["serif", "serif-i", "sans", "mono"],
-            "Nandi Vardhan. AI Architect & Full-Stack Engineer. I build intelligent AI pipelines, robust backends, and cross-platform apps. Shipping HARMONIX.",
+            "Nandi Vardhan. Systems & Software Engineer. Low-latency Rust & C++ audio pipelines, native Android systems, and local AI tools.",
         ),
     )
 
 
-# ---- 2 · world tiles ----------------------------------------------------------
+# ---- 2 · world tiles (tasteskill.dev ember triad) ---------------------------
 TILE_W, TILE_H = 880 / 3 - 8, 210  # 285.33: two 12px gaps across the row
 
 
@@ -235,11 +258,11 @@ def count_up(num, word, x, y, attrs, begin, dur=1.1, frames=18):
     return "".join(out)
 
 
-def tile(name, label, color, on, num, word, blurb, delay, pos):
+def tile(name, label, color, on, accent_arrow, num, word, blurb, delay, pos):
     lines = wrap(blurb, 34)
     blurb_svg = "".join(
         f'<text class="r" {d(delay + 0.75 + i * 0.1)} x="24" y="{150 + i * 20}" font-family="{SANS}" '
-        f'font-size="14" fill="{on}" opacity=".92">{escape(l)}</text>'
+        f'font-size="13.5" fill="{on}" opacity=".90">{escape(l)}</text>'
         for i, l in enumerate(lines)
     )
     body = f"""
@@ -247,16 +270,16 @@ def tile(name, label, color, on, num, word, blurb, delay, pos):
   <clipPath id="card"><rect width="{TILE_W}" height="{TILE_H}" rx="14"/></clipPath>
   <clipPath id="slot"><rect x="0" y="62" width="{TILE_W}" height="62"/></clipPath>
   <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/>
-    <stop offset=".5" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <stop offset=".5" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs>
 <g class="ti" {d(delay)}>
   <g clip-path="url(#card)">
     <rect width="{TILE_W}" height="{TILE_H}" fill="{color}"/>
-    <circle class="rg" {d(delay + 0.5)} cx="{TILE_W - 40}" cy="{TILE_H - 40}" r="60" fill="none" stroke="{on}" stroke-opacity=".5" stroke-width="2"/>
+    <circle class="rg" {d(delay + 0.5)} cx="{TILE_W - 40}" cy="{TILE_H - 40}" r="60" fill="none" stroke="{on}" stroke-opacity=".45" stroke-width="2"/>
     <rect class="sh" style="animation-delay:{delay + 1.4:.2f}s" x="0" y="-20" width="90" height="{TILE_H + 40}" fill="url(#gl)" transform="translate(-260 0)"/>
   </g>
-  <text class="sl" {d(delay + 0.35)} x="24" y="38" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{on}">{label}</text>
-  <g class="ai" {d(delay + 0.5)}><text class="n" style="animation-delay:{delay + 1.3:.2f}s" x="250" y="38" font-family="{MONO}" font-size="14" fill="{on}">&#8594;</text></g>
+  <text class="sl" {d(delay + 0.35)} x="24" y="38" font-family="{MONO}" font-size="11.5" letter-spacing="1.2" fill="{on}">{label}</text>
+  <g class="ai" {d(delay + 0.5)}><text class="n" style="animation-delay:{delay + 1.3:.2f}s" x="250" y="38" font-family="{MONO}" font-size="14" fill="{accent_arrow}">&#8594;</text></g>
   <g clip-path="url(#slot)"><g class="ro" {d(delay + 0.45)}>
     {count_up(num, word, 22, 112, f'font-family="{SERIF}" font-size="44" fill="{on}"', delay + 0.45)}
   </g></g>
@@ -277,7 +300,7 @@ def tile(name, label, color, on, num, word, blurb, delay, pos):
     )
 
 
-# ---- 3 · activity (monthly bars) ------------------------------------------------
+# ---- 3 · activity (monthly bars on warm cream paper) -------------------------
 def activity(data):
     h = 340
     monthly = data["monthly"][-12:]
@@ -291,7 +314,7 @@ def activity(data):
         is_best = m is best
         bh = max(4, round(m["total"] / top * maxh))
         x = x0 + i * (bw + gap)
-        fill = TECH if is_best else ("#c9c9c4" if partial else INK)
+        fill = ORANGE if is_best else ("#cfc5b9" if partial else INK)
         label = datetime.date.fromisoformat(m["month"] + "-01").strftime("%b")
         bars.append(
             f'<rect class="g" style="animation-delay:{2.2 + i * 0.07:.2f}s" x="{x:.1f}" y="{base - bh}" '
@@ -302,7 +325,7 @@ def activity(data):
         if is_best:
             bars.append(
                 f'<text class="p" style="animation-delay:3.2s" x="{x + bw / 2:.1f}" y="{base - bh - 10}" '
-                f'text-anchor="middle" font-family="{MONO}" font-size="11" fill="{TECH}">{m["total"]:,}</text>'
+                f'text-anchor="middle" font-family="{MONO}" font-size="11" fill="{LABEL}">{m["total"]:,}</text>'
             )
     cs = data["current_streak"]["length"]
     ls = data["longest_streak"]["length"]
@@ -310,7 +333,7 @@ def activity(data):
     total_days = len(data["days"])
     stats = [
         (f'{cs} <tspan font-style="italic">days</tspan>', streak_note),
-        (f'{data["active_days"]}<tspan fill="#8e8e93"> / {total_days}</tspan>', "days with a commit"),
+        (f'{data["active_days"]}<tspan fill="{MUTED}"> / {total_days}</tspan>', "days with a commit"),
         (f'{data["best_day"]["count"]}', "on the busiest day"),
     ]
     side = []
@@ -322,11 +345,11 @@ def activity(data):
             f'<text x="650" y="{y + 24}" font-family="{SANS}" font-size="13" fill="{MUTED}">{small}</text></g>'
         )
         if i < 2:
-            side.append(f'<rect class="f" {d(2.6)} x="650" y="{y + 44}" width="190" height="1" fill="{RULE}"/>')
+            side.append(f'<rect class="f" {d(2.6)} x="650" y="{y + 44}" width="190" height="1" fill="{HAIR}"/>')
     body = f"""
-<rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
-<text class="f" {d(1.9)} x="40" y="58" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">THE LAST 12 MONTHS ON GITHUB</text>
-<text class="r" {d(2.0)} x="38" y="114" font-family="{SERIF}" font-size="52" fill="{INK}">{data["total_contributions"]:,} <tspan font-style="italic">contributions</tspan></text>
+<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="13.5" fill="{CREAM}" stroke="{HAIR}"/>
+<text class="f" {d(1.9)} x="40" y="58" font-family="{MONO}" font-size="11.5" letter-spacing="1" fill="{LABEL}">THE LAST 12 MONTHS ON GITHUB</text>
+<text class="r" {d(2.0)} x="38" y="114" font-family="{SERIF}" font-size="52" fill="{INK}">{data["total_contributions"]:,} <tspan font-style="italic" fill="{LABEL}">contributions</tspan></text>
 {''.join(bars)}
 {''.join(side)}
 """
@@ -342,26 +365,26 @@ def activity(data):
     )
 
 
-# ---- 4 · repo cards -----------------------------------------------------------
+# ---- 4 · repo cards (warm cream paper + hairline ring) ----------------------
 REPO_W, REPO_H = 880 / 3 - 8, 176
 REPOS = [
     (
         "Smart-Apply",
-        "AI job application platform with resume tailoring, tracking, and voice interview prep.",
+        "Voice AI interview simulator and ATS resume tailoring web platform.",
         "TypeScript",
-        TECH,
-    ),
-    (
-        "VISION",
-        "Local voice AI desktop agent for Windows with 40+ tools on FastAPI, Go, and NIM.",
-        "Python",
-        STUDIO,
+        ORANGE,
     ),
     (
         "GLOOM",
-        "Dynamic Island & Dock ecosystem for Windows and Android with on-device AI tools.",
+        "Desktop continuity & Dynamic Island for Windows and Android in Rust & Win32.",
         "Rust",
-        LEARN,
+        LABEL,
+    ),
+    (
+        "VISION",
+        "Cross-platform multimodal workspace with unified voice, web, and CLI interfaces.",
+        "Python",
+        INK,
     ),
 ]
 
@@ -380,12 +403,12 @@ def repo_card(i, name, desc, lang, color, info):
         parts.append("live")
     meta = "  ·  ".join(parts)
     body = f"""
-<rect width="{REPO_W}" height="{REPO_H}" rx="14" fill="{PAPER}"/>
+<rect x="0.5" y="0.5" width="{REPO_W - 1}" height="{REPO_H - 1}" rx="13.5" fill="{CREAM}" stroke="{HAIR}"/>
 <g class="r" {d(delay)}>
   <rect x="24" y="30" width="8" height="8" rx="2" fill="{color}"/>
   <text x="40" y="39" font-family="{SANS}" font-weight="600" font-size="18" fill="{INK}">{escape(name)}</text>
-  {text_lines(24, 72, wrap(desc, 34), 21, f'font-family="{SANS}" font-size="14" fill="{INK_SOFT}"')}
-  <text x="24" y="{REPO_H - 24}" font-family="{MONO}" font-size="12" fill="{MUTED}">{escape(meta)}</text>
+  {text_lines(24, 72, wrap(desc, 34), 21, f'font-family="{SANS}" font-size="13.5" fill="{INK_SOFT}"')}
+  <text x="24" y="{REPO_H - 24}" font-family="{MONO}" font-size="11.5" fill="{MUTED}">{escape(meta)}</text>
 </g>
 """
     write(
@@ -403,16 +426,17 @@ def repo_card(i, name, desc, lang, color, info):
 
 
 def section_title(text, italic, theme):
-    fg = "#e6edf3" if theme == "dark" else INK
+    fg = CREAM_TEXT if theme == "dark" else INK
+    accent = ORANGE_HOT if theme == "dark" else LABEL
     body = (
         f'<text class="r" {d(4.4)} x="2" y="46" font-family="{SERIF}" font-size="34" fill="{fg}">{escape(text)} '
-        f'<tspan font-style="italic">{escape(italic)}</tspan></text>'
+        f'<tspan font-style="italic" fill="{accent}">{escape(italic)}</tspan></text>'
     )
     write(f"title-coding-{theme}.svg", svg(W, 64, body, ["serif", "serif-i"], f"{text} {italic}", bottom=0))
 
 
-# ---- 5 · blue contribution graph -----------------------------------------------
-BLUE = [PAPER_DEEP, "#c8d3ff", "#94a8ff", "#6280ff", TECH, "#1a3be0"]
+# ---- 5 · ember contribution graph -------------------------------------------
+EMBER = [CREAM_SUNK, "#ffd4b5", "#ffa46b", ORANGE_HOT, ORANGE, LABEL]
 
 
 def level_for(c):
@@ -436,7 +460,7 @@ def heatmap(data):
         delay = 1.0 + col * 0.03 + row * 0.02
         cells.append(
             f'<rect class="p" style="animation-delay:{delay:.2f}s" x="{gx + col * step}" y="{gy + row * step}" '
-            f'width="{cell}" height="{cell}" rx="3" fill="{BLUE[level_for(c)]}">'
+            f'width="{cell}" height="{cell}" rx="3" fill="{EMBER[level_for(c)]}">'
             f'<title>{day["date"]}: {c} contribution{"s" if c != 1 else ""}</title></rect>'
         )
     ncols = (len(days) + lead + 6) // 7
@@ -445,21 +469,21 @@ def heatmap(data):
         f'<text x="{gx + col * step}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">{m}</text>'
         for col, m in months if col < ncols - 12
     )
-    legend_x = right - len(BLUE) * 14
+    legend_x = right - len(EMBER) * 14
     legend = "".join(
         f'<rect x="{legend_x + i * 14}" y="{gy + 7 * step + 6}" width="11" height="11" rx="2.5" fill="{c}"/>'
-        for i, c in enumerate(BLUE)
+        for i, c in enumerate(EMBER)
     )
     h = gy + 7 * step + 44
     body = f"""
-<rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
-<text class="r" {d(0.8)} x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}">Every day, <tspan font-style="italic" fill="{TECH}">in blue</tspan></text>
-<text class="f" {d(0.8)} x="{right}" y="60" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">REFRESHED DAILY</text>
+<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="13.5" fill="{CREAM}" stroke="{HAIR}"/>
+<text class="r" {d(0.8)} x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}">Every day, <tspan font-style="italic" fill="{ORANGE}">in ember</tspan></text>
+<text class="f" {d(0.8)} x="{right}" y="60" text-anchor="end" font-family="{MONO}" font-size="11.5" letter-spacing="1" fill="{MUTED}">REFRESHED DAILY</text>
 {''.join(cells)}
 <g class="f" {d(2.4)}>{labels}
 <text x="{legend_x - 8}" y="{gy + 7 * step + 16}" text-anchor="end" font-family="{MONO}" font-size="11" fill="{MUTED}">less</text>
 {legend}
-<text x="{legend_x + len(BLUE) * 14 + 2}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">more</text></g>
+<text x="{legend_x + len(EMBER) * 14 + 2}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">more</text></g>
 """
     write(
         "heatmap.svg",
@@ -510,33 +534,36 @@ if __name__ == "__main__":
     tile(
         "build",
         "BUILD",
-        TECH,
-        "#ffffff",
+        ORANGE,
+        CREAM_TEXT,
+        CREAM_TEXT,
         str(repo_count),
         "repos",
-        "Shipping Smart-Apply, VISION, GLOOM, and AI pipelines in Python, Rust & TS.",
+        "Rust & C++ audio engines, native Android apps, and local AI tools.",
         3.1,
         0,
     )
     tile(
         "compete",
         "COMPETE",
-        STUDIO,
-        "#ffffff",
+        INK,
+        CREAM_TEXT,
+        ORANGE_HOT,
         "14",
         "/ 1,517",
-        "Oracle-partnered SQL rank, #2 Project Space Hackathon, and LeetCode DSA.",
+        "Oracle SQL rank #14, #2 Project Space Hackathon, and LeetCode DSA.",
         3.35,
         1,
     )
     tile(
         "craft",
         "CRAFT",
-        LEARN,
+        PEACH,
         INK,
+        LABEL,
         "5",
         "live apps",
-        "Building HARMONIX alongside B.Tech CSE (IT) at Aditya College of Engg & Tech.",
+        "Shipping Harmonix (<4.2ms DSP) alongside B.Tech IT at Aditya COE.",
         3.6,
         2,
     )
